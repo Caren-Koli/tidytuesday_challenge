@@ -1,0 +1,151 @@
+---
+title: "Cocktails"
+author: "Caren"
+date: "6/4/2020"
+output: html_document
+---
+## chunk requirements
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      message = FALSE,
+                      warning = FALSE,
+                      fig.width = 8,
+                      fig.height = 6)
+```
+
+## Load packages
+<br>
+```{r}
+library(tidyverse)
+library(ggplot2)
+library(patchwork)
+
+```
+
+## Read in data
+```{r}
+cocktails <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-05-26/cocktails.csv')
+boston_cocktails <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-05-26/boston_cocktails.csv')
+
+## change case to lower
+cockt <- cocktails %>% 
+         mutate_all(tolower)
+
+```
+
+## Boston cocktails
+```{r}
+boston <- boston_cocktails %>% 
+          mutate_all(tolower) %>% 
+          ##obtain drinks only measured in oz
+          filter(measure %in%(grep("oz",measure,ignore.case = T,value = T))) %>% 
+          separate(measure,sep=" o",into=c("measurenum","units"),remove = FALSE) %>% 
+##recode measurenum into equivalent numeric values          
+mutate(measurement = recode(measurenum,
+                            "2"=2,"1"=1,"1 1/2"=1.5,"1/2"=0.5,"1/4"=0.25,"3"=3,"1 1/4"=1.25,
+                     "3/4"=0.75,"2 1/2"=2.5, "5"=5,"1 2/3"=2.67,"1/3"=0.3,"4"=4,"1 3/4"=1.75,
+                       "2 1/4"=2.25,"6"=6,"24"=24,"16"=16,"1"=1,"1  3/4"=1.75)) 
+
+##summ stata: for boston categories by total measurement in oz
+tb_a <- boston %>% 
+       group_by(category) %>% 
+       summarise(total_oz = round(sum(measurement),0))
+       
+##graph for summ stat a
+
+grapha <- ggplot(data = tb_a,aes(x = category, y = total_oz,group = 1))+
+            geom_line(size = 1,color = "#F08080")+
+            #geom_text(aes(label = total_oz))+
+          
+            labs(title = "Drink measurement in oz",x = "category", y = "Total oz")+
+            coord_flip()
+grapha
+
+
+```
+
+
+## Alcoholic types by categories
+
+```{r}
+## summ statistics 1: for categories by alcoholic type
+```
+
+
+```{r}
+category1 <-cockt %>% 
+  group_by(alcoholic,category) %>%
+  summarise(n = n()) %>% 
+  na.omit()
+
+##Bar graph for summ statistics 1
+graph1 <- ggplot(data = category1,aes(x = alcoholic, y = n, fill = category))+
+                 geom_bar(stat = "identity",position = "stack")+ 
+                 #geom_text(aes(label = n,hjust = 0.5, vjust = -0.25),
+                           #position = position_stack())+
+                  scale_fill_manual(values =    c("#787D14","#FFC300","#FF0000","#FFFF00","#900C3F","#581845",
+                               "#E523AA","#000080","#00FFFF","#00FF00","#808080"))+
+                  labs(title = "Alcoholic distr by drink categories", x =     "alcoholic",y="count")
+graph1
+```
+
+
+## Top 10 ingredients in every alcoholic-drink types
+```{r}
+## summ statistics 2:Top 10 ingredients in alcoholic
+tab2 <- cockt %>%
+        filter(alcoholic == "alcoholic") %>% 
+        group_by(ingredient) %>% 
+        summarise(n = n()) %>% 
+        arrange(desc(n)) %>% 
+        head(10)
+##Bar graph for summ statistics 2
+
+graph2 <- ggplot(data = tab2, aes(x = reorder(ingredient,-n), y =n))+
+          geom_bar(stat = "identity", fill = "#008080")+
+          labs(title = "Top 10 non-alcoholic ingredients",x = "ingredients",y = "freq")+
+  coord_flip()
+graph2
+## summ stat 3: Top 10 ingredients in non alcoholic drinks
+tab3 <- cockt %>%
+  filter(alcoholic == "non alcoholic") %>% 
+  group_by(ingredient) %>% 
+  summarise(n = n()) %>% 
+  arrange(desc(n)) %>% 
+  head(10)
+##bar graph for summ stat 3
+graph3 <- ggplot(data = tab3, aes(x = reorder(ingredient,-n), y =n))+
+  geom_bar(stat = "identity", fill = "#E523AA")+
+  labs(title = "Top 10 alcoholic ingredients", x ="ingredient", y = "freq")+
+  coord_flip()
+
+graph3
+##combine graph 1 and 2 to a single output window
+output1 <- graph2    +  graph3
+output1
+
+```
+
+
+## Glass contents by categories
+```{r}
+##summ stat 4: content of glass by category types(only for popular glasses)
+tab4 <- cockt %>%
+        filter(glass %in% c("cocktail glass","punch bowl","old-fashioned glass","highball      glass","collins glass","whiskey sour glass","coffee mug","champagne flute")) %>% 
+        group_by(glass,category) %>% 
+        summarise(count = n()) %>% 
+        ungroup()
+##graph for summ stat 4
+
+graph4 <- ggplot(data = tab4,aes(x = glass, y = count,fill = category))+
+          geom_bar(stat = "identity",position = "stack")+
+          scale_fill_manual(values =   c("#000000","#E5B023","#B9E523","#58E523","#23E5B0","#BF23E5" ,"#E523AA","#E52349","#E5BF23","#940A1F","#0A943A"))+
+
+         coord_flip()+
+         labs(title = "glass content",x = "glass", y = "count")
+graph4
+
+```
+
+
+
