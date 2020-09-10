@@ -1,0 +1,62 @@
+---
+title: "Chopped"
+author: "Caren"
+date: "9/10/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      message = FALSE,
+                      warning = FALSE,
+                      fig.width = 6,
+                      fig.height = 6)
+```
+##1.Load packages
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+```
+
+##2. Read in data
+```{r }
+chopped <- readr::read_tsv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-08-25/chopped.tsv')
+```
+
+##3. Data manipulation
+```{r }
+ingred <- chopped %>% 
+          pivot_longer(cols = appetizer:dessert, names_to = "type" ,values_to = "ingredient") %>% 
+          distinct(season,season_episode,series_episode,episode_rating,type,ingredient) %>% 
+          separate_rows(ingredient,sep = ",") %>% 
+          mutate(ingredients = trimws(ingredient)) %>% 
+          select(-ingredient) %>%
+          rename(ingredient = ingredients)
+```
+
+##4. Graph
+```{r }
+##summary statistics
+tab2 <- ingred %>% 
+        group_by(type,ingredient) %>% 
+        summarise(count = n()) %>%  na.omit
+
+
+##Graph
+p1 <- ggplot(data = tab2, aes(x = type, y = count))+
+     annotate("text", x = tab2$type, y = tab2$count, 
+              label = tab2$ingredient, size = 3, color = "black")+
+  annotate("text", x = "dessert",y = 15,label = "CHOPPED", size = 9, color = "red")+
+  annotate("text", x = "appetizer", y = 13, label = "Popular ingredients", 
+           size = 5, color = "blue")+
+  scale_y_continuous(name = "", limits = c(-1,15))+
+  theme(
+    panel.grid = element_blank(),
+    axis.text = element_text(face = 12),
+    axis.title = element_text(face = "italic")
+   
+  )
+p1
+```
+
