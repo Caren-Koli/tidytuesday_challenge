@@ -8,4 +8,4 @@ Contains my R scripts and visualizations for #Tidy Tuesday - A weekly podcast pr
 ### [**Week 5 (`2021-02-08`): Plastic Pollution**](https://github.com/Caren-Koli/tidytuesday_challenge/tree/master/2021/week5)
 [`(code)`](https://github.com/Caren-Koli/tidytuesday_challenge/blob/master/2021/week5/Week%205_plastic%20pollution.R)
 
-<img src= "https://github.com/Caren-Koli/tidytuesday_challenge/blob/master/2021/week5/Week%205_plastic%20pollution.R" width = "80%">
+<img src= "https://github.com/Caren-Koli/tidytuesday_challenge/blob/master/2021/week5/Week%205_plastic%20pollution.PNG" width = "80%">
