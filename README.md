@@ -6,6 +6,6 @@ Contains my R scripts and visualizations for #Tidy Tuesday - A weekly podcast pr
 <img src="https://github.com/Caren-Koli/tidytuesday_challenge/blob/master/week4/week4_rkenyacensus.JPG" width="70%">
 
 ### [**Week 5 (`2021-02-08`): Plastic Pollution**](https://github.com/Caren-Koli/tidytuesday_challenge/tree/master/week5)
-[`(code)`] (https://github.com/Caren-Koli/tidytuesday_challenge/blob/master/week5/Week%205_plastic%20pollution.R)
+[`(code)`](https://github.com/Caren-Koli/tidytuesday_challenge/blob/master/week5/Week%205_plastic%20pollution.R)
 
 <img src= "https://github.com/Caren-Koli/tidytuesday_challenge/blob/master/week5/Week%205_plastic%20pollution.PNG" width = "80%">
