@@ -10,8 +10,8 @@ Contains my R scripts and visualizations for #Tidy Tuesday - A weekly podcast pr
 
 <img src= "https://github.com/Caren-Koli/tidytuesday_challenge/blob/master/2021/week5/Week%205_plastic%20pollution.PNG" width = "80%">
 
-### [**Week 6 (`2021-02-09`): HBCU enrollment**]
-(https://github.com/Caren-Koli/tidytuesday_challenge/tree/master/2021/week6)
-[`(code)`] (https://github.com/Caren-Koli/tidytuesday_challenge/blob/master/2021/week6/Week%206_hbcu.R)
+### [**Week 6 (`2021-01-22`): HBCU Enrollment**](https://github.com/Caren-Koli/tidytuesday_challenge/tree/master/2021/week6) [`(code)`](https://github.com/Caren-Koli/tidytuesday_challenge/blob/master/2021/week6/Week%206_hbcu.R) 
 
-<img src= "https://github.com/Caren-Koli/tidytuesday_challenge/blob/master/2021/week6/Week%206_hbcu.PNG" width = 80%>
+<img src="https://github.com/Caren-Koli/tidytuesday_challenge/blob/master/2021/week6/Week%206_hbcu.PNG" width="75%">
+
+
