@@ -25,7 +25,7 @@ Contains my R scripts and visualizations for #Tidy Tuesday - A weekly podcast pr
 
 ### [**Week 4 (`2021-01-22`): RKenya Census**](https://github.com/Caren-Koli/tidytuesday_challenge/tree/master/2021/week4) [`(code)`](https://github.com/Caren-Koli/tidytuesday_challenge/blob/master/2021/week4/Week%204_rKenyaCensus.R) 
 
-<img src="https://github.com/Caren-Koli/tidytuesday_challenge/blob/master/2021/week4/week4_rkenyacensus.JPG" width="75%">
+<img src="https://github.com/Caren-Koli/tidytuesday_challenge/blob/master/2021/week4/week4_rkenyacensus.JPG" width="80%">
 
 
 
