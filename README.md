@@ -1,6 +1,8 @@
 # tidytuesday Project
 Contains my R scripts and visualizations for #Tidy Tuesday - A weekly podcast project founded by @Thomas Mock and organized by the @R4DSCommunity
 
+### [**Week 37 (`2022-09-13`): Bigfoot**](https://github.com/Caren-Koli/tidytuesday_challenge/tree/master/2022/week37) [`(code)`](https://github.com/Caren-Koli/tidytuesday_challenge/blob/master/2022/Week37/bigfoot.R) 
+<img src="https://github.com/Caren-Koli/tidytuesday_challenge/blob/master/2022/Week37/bigfoot_visibility_Week37.PNG" width="80%">
 
 ### [**Week 9 (`2021-02-24`): Employment & Earnings**](https://github.com/Caren-Koli/tidytuesday_challenge/tree/master/2021/week9) [`(code)`](https://github.com/Caren-Koli/tidytuesday_challenge/blob/master/2021/week9/Week%209_Employment%26%20earnings.R) 
 
